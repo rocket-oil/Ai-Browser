@@ -39,9 +39,9 @@ export default function Home() {
       case 'screenshot':
         setResult(
           <img
+            className="result-image"
             src={`data:image/png;base64,${data.image}`}
             alt="screenshot"
-            style={{ maxWidth: '100%' }}
           />
         )
         break
@@ -50,26 +50,20 @@ export default function Home() {
           <textarea
             readOnly
             rows={10}
-            style={{ width: '100%' }}
+            className="result-text"
             value={data.html}
           />
         )
         break
       case 'har':
         setResult(
-          <pre
-            style={{
-              background: '#f0f0f0',
-              maxHeight: 200,
-              overflow: 'auto',
-            }}
-          >
+          <pre className="result-code">
             {JSON.stringify(data.har, null, 2)}
           </pre>
         )
         break
       case 'evaluate':
-        setResult(<pre>{JSON.stringify(data.value)}</pre>)
+        setResult(<pre className="result-code">{JSON.stringify(data.value)}</pre>)
         break
     }
   }
@@ -112,62 +106,52 @@ export default function Home() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: 'Arial' }}>
-      <h1>Headless Browser Demo</h1>
+    <div className="app-container">
+      <h1 className="header">Headless Browser</h1>
 
-      <div style={{ marginBottom: 10 }}>
+      <div className="controls">
         <input
-          style={{ width: 400 }}
+          className="input"
           value={url}
           onChange={e => setUrl(e.target.value)}
           placeholder="输入 URL"
         />
-      </div>
-      <div style={{ marginBottom: 10 }}>
         <input
-          style={{ width: 200 }}
+          className="input"
           value={selector}
           onChange={e => setSelector(e.target.value)}
           placeholder="CSS 选择器（可选）"
         />
-      </div>
-      <div style={{ marginBottom: 10 }}>
         <textarea
+          className="textarea"
           rows={3}
-          style={{ width: 400 }}
           value={script}
           onChange={e => setScript(e.target.value)}
           placeholder="JS 表达式（Evaluate 用）"
         />
       </div>
 
-      {/* 常规 API 按钮 */}
-      {Object.entries(API_MAP).map(([label, key]) => (
-        <button
-          key={key}
-          onClick={() => callApi(key)}
-          style={{ marginRight: 10 }}
-        >
-          {label}
+      <div className="buttons">
+        {Object.entries(API_MAP).map(([label, key]) => (
+          <button
+            key={key}
+            className="btn"
+            onClick={() => callApi(key)}
+          >
+            {label}
+          </button>
+        ))}
+        <button className="btn btn-accent" onClick={downloadPDF}>
+          PDF 下载
         </button>
-      ))}
-
-      {/* PDF 下载按钮 */}
-      <button onClick={downloadPDF} style={{ marginRight: 10 }}>
-        PDF 下载
-      </button>
-
-      <div style={{ marginTop: 20 }}>
-        <h2>结果</h2>
-        {result}
       </div>
-      <div style={{ marginTop: 20 }}>
-        <h2>控制台日志</h2>
-        <pre
-          style={{ background: '#eee', maxHeight: 150, overflow: 'auto' }}
-        >
-          {logs.join('\n')}
-        </pre>
+
+      <div className="output">
+        <h2 className="subheader">结果</h2>
+        <div className="result-area">{result}</div>
+
+        <h2 className="subheader">控制台日志</h2>
+        <pre className="logs">{logs.join('\n')}</pre>
       </div>
     </div>
   )
