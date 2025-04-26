@@ -1,19 +1,33 @@
-# Headless Browser Demo
+# Headless Browser / 无头浏览器
 
-## 功能
-- 截图 (全页或指定元素)
-- PDF 导出
-- 抓取页面 HTML
-- 捕获网络请求 (HAR 格式)
-- 执行自定义 JS 表达式
-- 同步返回浏览器控制台日志
+## 功能 / Features
 
-## 本地部署
+- **截图 (全页或指定元素)**  
+  Screenshot (full page or specific element)
+
+- **PDF 导出**  
+  PDF Export
+
+- **抓取页面 HTML**  
+  Fetch Page HTML
+
+- **捕获网络请求 (HAR 格式)**  
+  Capture Network Requests (HAR format)
+
+- **执行自定义 JS 表达式**  
+  Execute Custom JS Expressions
+
+- **同步返回浏览器控制台日志**  
+  Return Browser Console Logs
+
+---
+
+## 本地部署 / Local Deployment
+
 ```bash
-git clone <repo>
-cd headless-demo
-yarn install
-docker-compose up
-```
-访问 http://localhost:3000
 
+# 安装依赖 / Install dependencies
+yarn install
+
+# 启动开发服务器 / Start development server
+yarn dev
